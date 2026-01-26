@@ -59,6 +59,9 @@ struct HomeView: View {
 }
 
 struct Header: View {
+    @State private var showHelpSheet = false
+    @State private var showNotificationsSheet = false
+
     var body: some View {
         HStack {
             HStack(spacing: 12) {
@@ -80,15 +83,19 @@ struct Header: View {
 
             HStack(spacing: 12) {
                 HeaderButton(icon: "questionmark.message.fill") {
-
+                    showHelpSheet = true
                 }
                 HeaderButton(icon: "bell.badge") {
-
+                    showNotificationsSheet = true
                 }.symbolEffect(
                     .wiggle.byLayer,
                     options: .repeat(.periodic(delay: 30.0))
                 )
             }
+        }.sheet(isPresented: $showHelpSheet) {
+            HelpSheet().presentationDetents([.large])
+        }.sheet(isPresented: $showNotificationsSheet){
+            NotificationsView().presentationDetents([.large])
         }
     }
 }
@@ -246,6 +253,63 @@ struct OtherActionsSheet: View {
         }
     }
 }
+
+
+struct HelpSheet: View {
+    @Environment(\.dismiss) var dismiss
+
+    @State private var chatVisible: Bool = false
+    @State var message: String = ""
+
+    var body: some View {
+        VStack {
+            Spacer()
+            HStack{
+                if chatVisible{
+                    HStack(spacing: 12) {
+                        Button(action: {
+
+                        }){
+                            Image(systemName: "paperclip")
+                        }.buttonStyle(.plain)
+
+                        TextField(
+                            "Ask anything",
+                            text: $message
+                        )
+                        .textFieldStyle(.plain)
+
+
+                    }.padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 24)
+                                .stroke(
+                                    Color.gray.opacity(0.1),
+                                    lineWidth: 1
+                                )
+                        )
+                }
+
+                Button(action: {
+                    chatVisible.toggle()
+                }){
+                    HStack{
+                        if chatVisible{
+                            Image(systemName: "paperplane.fill")
+                                .padding(.horizontal, 8)
+                        }else{
+                            Spacer()
+                            Text("Chat with Molly").foregroundStyle(.foreground)
+                            Spacer()
+                        }
+                    }.padding(.vertical, 8)
+                }.buttonStyle(.borderedProminent)
+            }
+        }.padding()
+    }
+}
+
+
 
 struct ActionGridItem: View {
     var label: String

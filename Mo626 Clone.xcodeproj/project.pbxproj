@@ -14,22 +14,9 @@
 		730117272EFAFACB00407607 /* Mo626 Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mo626 Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		7362AA242F10F522004C63AB /* Exceptions for "Mo626 Clone" folder in "Mo626 Clone" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"Mo626-Clone-Info.plist",
-			);
-			target = 730117262EFAFACB00407607 /* Mo626 Clone */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		730117292EFAFACB00407607 /* Mo626 Clone */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				7362AA242F10F522004C63AB /* Exceptions for "Mo626 Clone" folder in "Mo626 Clone" target */,
-			);
 			path = "Mo626 Clone";
 			sourceTree = "<group>";
 		};
